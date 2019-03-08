@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springVersion = "5.0.7.RELEASE"
+        springVersion = "5.1.5.RELEASE"
     }
 }
 group "com.devmind.training"
@@ -16,6 +16,7 @@ repositories {
 
 dependencies {
     compile "org.springframework:spring-core:${springVersion}"
+    compile "org.springframework:spring-context:${springVersion}"
 
     testCompile "org.springframework:spring-test:${springVersion}"
     testCompile "junit:junit:4.12"
