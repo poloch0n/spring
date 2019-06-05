@@ -1,8 +1,8 @@
 package com.training.springcore;
 
-import com.training.springcore.bigcorp.ObjectFactory;
 import com.training.springcore.service.SiteService;
-import com.training.springcore.service.SiteServiceImpl;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 public class BigCorpApplication {
 
@@ -12,9 +12,13 @@ public class BigCorpApplication {
     }
 
     public void run(){
-        System.out.println("Application startup");
-        ObjectFactory objectFactory = new ObjectFactory();
+        ApplicationContext context = new ClassPathXmlApplicationContext("beans.xml");
 
-        System.out.println(objectFactory.createSiteService().findById("siteA"));
+        System.out.println("Application startup");
+        // SiteService siteService = context.getBean(SiteService.class);
+        SiteService siteService = (SiteService) context.getBean("siteService");
+        System.out.println(siteService.findById("siteA"));
+        SiteService siteService2 = (SiteService) context.getBean("siteService");
+        System.out.println(siteService2.findById("siteB"));
     }
 }
