@@ -4,7 +4,19 @@ import com.training.springcore.model.Site;
 
 public class SiteServiceImpl implements SiteService {
 
-    private CaptorService captorService = new CaptorServiceImpl();
+    private CaptorService captorService;
+
+    public SiteServiceImpl(CaptorService captoreService) {
+        this.captorService =  captoreService;
+    }
+
+    public CaptorService getCaptorService() {
+        return captorService;
+    }
+
+    public void setCaptorService(CaptorService captorService) {
+        this.captorService = captorService;
+    }
 
     @Override
     public Site findById(String siteId) {
