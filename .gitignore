@@ -6,4 +6,5 @@
 .settings/
 .tmp/
 build/
-out/	
+out/
+.out/
