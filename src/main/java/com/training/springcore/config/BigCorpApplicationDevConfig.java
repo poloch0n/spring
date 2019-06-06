@@ -23,13 +23,10 @@ public class BigCorpApplicationDevConfig {
 
     @Bean
     public ApplicationInfo applicationInfo(Environment environment)  {
-        System.out.println(environment);
-        System.out.println("DEV");
         name = environment.getProperty("bigcorp.name");
         version = environment.getProperty("bigcorp.version", Integer.class);
         emails = (Set<String>) environment.getProperty("bigcorp.emails", Set.class);
         webSiteUrl = environment.getProperty("bigcorp.webSiteUrl");
-        System.out.println(name + " - " + version);
         return new ApplicationInfo(name, version, emails, webSiteUrl);
     }
 }

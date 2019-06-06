@@ -17,6 +17,11 @@ public class BigCorpApplication {
         ApplicationContext context = new AnnotationConfigApplicationContext(BigCorpApplicationConfig.class);
         System.out.println("Application startup");
 
+        SiteService siteService = context.getBean(SiteService.class);
+        System.out.println(siteService.findById("siteA"));
+        SiteService siteService2 = context.getBean(SiteService.class);
+        siteService2.readFile("classpath:example.txt");
+
         ApplicationInfo applicationInfo = context.getBean(ApplicationInfo.class);
         System.out.println("==========================================================");
         System.out.println("Application [" + applicationInfo.getName() + "] - version : "

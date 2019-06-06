@@ -23,8 +23,6 @@ public class BigCorpApplicationProdConfig {
 
     @Bean
     public ApplicationInfo applicationInfo(Environment environment) {
-        System.out.println(environment);
-        System.out.println("PROD");
         name = environment.getProperty("bigcorp.name");
         version = environment.getProperty("bigcorp.version", Integer.class);
         emails = (Set<String>) environment.getProperty("bigcorp.emails", Set.class);
