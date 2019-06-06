@@ -1,5 +1,6 @@
 package com.training.springcore;
 
+import com.training.springcore.model.ApplicationInfo;
 import com.training.springcore.service.SiteService;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -18,6 +19,13 @@ public class BigCorpApplication {
         System.out.println(siteService.findById("siteA"));
         SiteService siteService2 = context.getBean(SiteService.class);
         siteService2.readFile("classpath:example.txt");
+
+        ApplicationInfo applicationInfo = context.getBean(ApplicationInfo.class);
+        System.out.println("==========================================================");
+        System.out.println("Application [" + applicationInfo.getName() + "] - version : "
+                + applicationInfo.getVersion());
+        System.out.println("plus d'informations sur " + applicationInfo.getWebSiteUrl());
+        System.out.println("==========================================================");
 
     }
 }

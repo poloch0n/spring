@@ -3,8 +3,16 @@ package com.training.springcore.service.measure;
 import com.training.springcore.model.Captor;
 import com.training.springcore.model.Measure;
 import com.training.springcore.model.MeasureStep;
+import com.training.springcore.service.SiteServiceImplTest;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.Instant;
 import java.util.List;
@@ -12,7 +20,17 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+
+@RunWith(SpringRunner.class)
+@ContextConfiguration(classes = {RealMeasureServiceTest.RealMeasureServiceTestConfiguration.class})
 public class RealMeasureServiceTest {
+
+    @Configuration
+    @ComponentScan
+    @PropertySource("classpath:application.properties")
+    static class RealMeasureServiceTestConfiguration{ }
+
+    @Autowired
     private RealMeasureService service;
     /**
      * Captor used in tests
@@ -26,11 +44,6 @@ public class RealMeasureServiceTest {
      * End instant used in tests. We define a one day period
      */
     Instant end = start.plusSeconds(60 * 60 * 24);
-
-    @Before
-    public void init(){
-        service = new RealMeasureService();
-    }
 
     @Test
     public void readMeasuresThrowsExceptionWhenArgIsNull(){
@@ -70,7 +83,8 @@ public class RealMeasureServiceTest {
                         "2018-09-01T22:00:00Z",
                         "2018-09-01T23:00:00Z",
                         "2018-09-02T00:00:00Z",
-                        "2018-09-02T01:00:00Z", "2018-09-02T02:00:00Z",
+                        "2018-09-02T01:00:00Z",
+                        "2018-09-02T02:00:00Z",
                         "2018-09-02T03:00:00Z",
                         "2018-09-02T04:00:00Z",
                         "2018-09-02T05:00:00Z",
